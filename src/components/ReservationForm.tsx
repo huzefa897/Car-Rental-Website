@@ -37,14 +37,15 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   
-  // Load saved form data if exists
+
   useEffect(() => {
-    const savedData = getFormData();
+    const savedData = getFormData(selectedCar.id);
     if (savedData) {
       setFormData(savedData);
-      validateForm({...savedData});
+      validateForm({ ...savedData });
     }
-  }, []);
+  }, [selectedCar.id]);
+  
   
   // Calculate total price whenever rental period changes
   useEffect(() => {
@@ -116,13 +117,14 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       ...formData,
       [name]: name === 'rentalPeriod' ? parseInt(value) : value
     };
-    
+  
     setFormData(updatedFormData);
-    saveFormData(updatedFormData);
+    saveFormData(selectedCar.id, updatedFormData);
     validateForm(updatedFormData);
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
+    
     e.preventDefault();
     setSubmitError(null);
   
@@ -149,10 +151,11 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   
   const handleCancel = () => {
     navigate('/');
-    clearFormData();
+    clearFormData(selectedCar.id);
   };
   
   return (
+    
     <form onSubmit={handleSubmit} className="space-y-6">
       {submitError && (
         <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-4">

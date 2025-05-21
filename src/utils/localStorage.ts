@@ -1,5 +1,6 @@
 import { Car, FormData } from '../types';
 
+
 // Save selected car to localStorage
 export const saveSelectedCar = (car: Car): void => {
   localStorage.setItem('selectedCar', JSON.stringify(car));
@@ -12,21 +13,20 @@ export const getSelectedCar = (): Car | null => {
 };
 
 // Save form data to localStorage
-export const saveFormData = (formData: FormData): void => {
-  localStorage.setItem('formData', JSON.stringify(formData));
+export const saveFormData = (carId: string, formData: FormData): void => {
+  localStorage.setItem(`formData_${carId}`, JSON.stringify(formData));
 };
 
 // Get form data from localStorage
-export const getFormData = (): FormData | null => {
-  const savedData = localStorage.getItem('formData');
+export const getFormData = (carId: string): FormData | null => {
+  const savedData = localStorage.getItem(`formData_${carId}`);
   return savedData ? JSON.parse(savedData) : null;
 };
 
 // Clear form data from localStorage
-export const clearFormData = (): void => {
-  localStorage.removeItem('formData');
+export const clearFormData = (carId: string): void => {
+  localStorage.removeItem(`formData_${carId}`);
 };
-
 // Update car availability with expiry time
 export const updateCarAvailability = (carId: string, available: boolean, expiryTime?: number): void => {
   const carsData = localStorage.getItem('carsData');
