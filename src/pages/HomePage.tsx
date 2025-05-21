@@ -36,9 +36,9 @@ const HomePage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
             <h1 className="text-8xl 
-text-gray 
+text-blue-400 
 tracking-tighter 
-text-balance font-bold mb-2">Find Your Perfect Ride</h1>
+text-balance font-bold mb-2"><span className='text-red-600'>F</span>ind <span className='text-red-600'>Y</span>our <span className='text-red-600'>P</span>erfect <span className='text-red-600'>R</span>ide</h1>
             <p className="text-gray-600">Explore our collection of premium vehicles for your daily needs</p>
           </div>
           

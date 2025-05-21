@@ -1,14 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ReservationPage from './pages/ReservationPage';
 import AddANewCar from './pages/AddANewCar';
 import ProtectedRoute from './Routes/ProtectedRoute';
-import { useEffect } from 'react';
 import { getExpiryList, revertCarAvailability } from './utils/localStorage';
 
 function App() {
-
   useEffect(() => {
     const expiryList = getExpiryList();
     const now = Date.now();
@@ -23,23 +21,21 @@ function App() {
       }
     });
   }, []);
+
   return (
     <BrowserRouter basename="/Car-Rental-Website">
-
-    <Router>
       <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/reservation" element={<ReservationPage />} />
-      <Route
-        path="/addACar"
-        element={
-          <ProtectedRoute>
-            <AddANewCar />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
-    </Router>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/reservation" element={<ReservationPage />} />
+        <Route
+          path="/addACar"
+          element={
+            <ProtectedRoute>
+              <AddANewCar />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
