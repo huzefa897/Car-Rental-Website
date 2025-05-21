@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ReservationPage from './pages/ReservationPage';
 import AddANewCar from './pages/AddANewCar';
@@ -24,6 +24,8 @@ function App() {
     });
   }, []);
   return (
+    <BrowserRouter basename="/Car-Rental-Website">
+
     <Router>
       <Routes>
       <Route path="/" element={<HomePage />} />
@@ -38,6 +40,7 @@ function App() {
       />
     </Routes>
     </Router>
+    </BrowserRouter>
   );
 }
 
